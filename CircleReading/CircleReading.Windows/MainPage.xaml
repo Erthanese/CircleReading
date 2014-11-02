@@ -1,0 +1,66 @@
+﻿<Page
+    x:Class="CircleReading.MainPage"
+    x:Name="PageRoot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CircleReading"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:WinRTXamlToolkit.Controls"
+    xmlns:ex="using:WinRTXamlToolkit.Controls.Extensions"
+    xmlns:conv="using:WinRTXamlToolkit.Converters"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    mc:Ignorable="d"
+    SizeChanged="Page_SizeChanged"
+    >
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/> 
+        </Grid.RowDefinitions>
+        <StackPanel Margin="30">
+            <TextBlock Style="{ThemeResource HeaderTextBlockStyle}" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" Grid.Row="0"> Base Line Testing</TextBlock>
+            <TextBlock Style="{ThemeResource HeaderTextBlockStyle}" FontSize="42" Margin="0,20" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" Grid.Row="0"> Article #1</TextBlock>
+        </StackPanel>
+        <Grid x:Name="ContainerGrid" Grid.Column="1" Grid.Row="1" Height="600" Width="600">
+            <ScrollViewer Visibility="Collapsed" Margin="0,0,-16,0" x:Uid="ContentScrollViewer" x:Name="ContentScrollViewer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource BackgroundBrush}">
+                <StackPanel Margin="10,0">
+                    <RichTextBlock Margin="0,200,0,30" x:Name="CircularContentBlock" FontSize="24"  Foreground="{ThemeResource ForegroundBrush}">
+                    </RichTextBlock>
+                </StackPanel>
+            </ScrollViewer>
+            <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <AppBarButton Name="StartButton" Icon="Play" Margin="0,0,0,-20" Click="StartButton_Click" />
+            </Viewbox>
+            <Rectangle Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}" Stroke="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="16" Margin="0,0,-16,0" HorizontalAlignment="Right"></Rectangle>
+            <!--<Image Source="Assets/CircularMask.png" HorizontalAlignment="Stretch" VerticalAlignment="Center" Stretch="Uniform" Height="600" />-->
+            <Path x:Name="CircularMask" Visibility="{Binding IsChecked,ElementName=ShowMaskButton,Converter={StaticResource BooleanToVisibilityConverter}}" Stroke="{ThemeResource ScreenBoundryBrush}" Fill="{ThemeResource ScreenBoundryBrush}" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+            Data="M 0,0 V 0,200 H 0,200 V 200,0 H 200,100 A 100,100 180 1 1 100,200 A 100,100 180 1 1 100,0 z" />
+            <AppBarButton x:Name="FinishButton" Icon="Stop" VerticalAlignment="Bottom" HorizontalAlignment="Left" Label="Finish" Click="FinishButton_Click"/>
+
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Stretch" >
+            <AppBarToggleButton Label="Show Mask" Width="auto" Height="auto" x:Name="ShowMaskButton"  VerticalAlignment="Top"  IsChecked="True" Icon="Crop"/>
+            <AppBarToggleButton Label="Center Crop" Width="auto" Height="auto" x:Name="CenterCropButton"  VerticalAlignment="Top"  IsChecked="False" Icon="AlignCenter" Checked="CenterCropButton_Checked" Unchecked="CenterCropButton_Checked"/>
+            <AppBarSeparator></AppBarSeparator>
+            
+        </StackPanel>
+        <ListView  x:Uid="TimeListView" x:Name="TimeListView" Grid.Row="2" Margin="20,90,20,20" SelectionMode="None" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Minutes}"></TextBlock>
+                        <TextBlock>:</TextBlock>
+                        <TextBlock Text="{Binding Seconds}"></TextBlock>
+                        <TextBlock>:</TextBlock>
+                        <TextBlock Text="{Binding Milliseconds}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</Page>
