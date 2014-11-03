@@ -72,7 +72,7 @@ namespace CircleReading
 				container.Child = textBlock;
 				textBlock.Text = node.InnerText;
 				textBlock.Tapped += textBlock_Tapped;
-				textBlock.FontSize = container.FontSize;
+				textBlock.FontSize = 24;
 				return container;
 
 				//var link = new Hyperlink();

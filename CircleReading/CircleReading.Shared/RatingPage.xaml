@@ -7,15 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="20">
         <StackPanel Margin="5,0" VerticalAlignment="Center">
-            <TextBlock Margin="0,0,0,0" Foreground="{ThemeResource AppAcentColorBrush}">
-                Are you a Native-English Speaker?</TextBlock>
+            <TextBlock Margin="0,0,0,0" Foreground="{ThemeResource AppAcentColorBrush}" Style="{ThemeResource  GroupHeaderTextBlockStyle}">
+               How about the experience with reading? (1-9)</TextBlock>
             <Slider x:Name="GeneralRatingSlider" Maximum="9" Minimum="1" IntermediateValue="1" ></Slider>
             <Grid>
-                <TextBlock HorizontalAlignment="Left" Foreground="{ThemeResource AppAcentColorBrush}">1</TextBlock>
-                <TextBlock HorizontalAlignment="Center" Foreground="{ThemeResource AppAcentColorBrush}">5</TextBlock>
-                <TextBlock HorizontalAlignment="Right" Foreground="{ThemeResource AppAcentColorBrush}">9</TextBlock>
+                <TextBlock HorizontalAlignment="Left" Foreground="{ThemeResource AppAcentColorBrush}" Style="{ThemeResource BodyTextBlockStyle}">1 (horrible)</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Foreground="{ThemeResource AppAcentColorBrush}" Style="{ThemeResource BodyTextBlockStyle}">5 (average)</TextBlock>
+                <TextBlock HorizontalAlignment="Right" Foreground="{ThemeResource AppAcentColorBrush}" Style="{ThemeResource BodyTextBlockStyle}">9 (excellent)</TextBlock>
             </Grid>
             <!--<TextBlock Margin="0,20,0,0" Style="{ThemeResource GroupHeaderTextBlockStyle}" Foreground="{ThemeResource AppAcentColorBrush}">
                 What is your Gender?</TextBlock>

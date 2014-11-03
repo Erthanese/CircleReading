@@ -98,6 +98,7 @@ namespace CircleReading
 							}
 							break;
 						case TestingState.BaselineReading:
+							StageFrame.Focus(FocusState.Pointer);
 							result = VisualStateManager.GoToState(this, "BaselineReadingState", false);
 							break;
 						case TestingState.DetailReadingPrepare:
@@ -121,15 +122,17 @@ namespace CircleReading
 						case TestingState.SearchReadingPrepare2:
 						case TestingState.SearchReadingPrepare3:
 							{
+								var No = (_state - TestingState.SearchReadingPrepare1) / 2 + 1;
 								TitleTextBlock.Text = "Search Reading";
 								DescriptionTextBlock.Text = "Please Tap the anwser keyword of the qustion as quick as you can";
+								QustionTextBlock.Text = (string)App.Current.Resources[String.Format("Qustion{0}", No)];
 								var request = new ReadingPageRequestParameter
 								{
 									Layout = this.RequestLayout,
-									ArticleName = String.Format("Article1_S{0}.html",(_state - TestingState.SearchReadingPrepare1 + 1))
+									ArticleName = String.Format("Article1_S{0}.html", No)
 								};
 								var param = JsonConvert.SerializeObject(request);
-								StageFrame.Navigate(typeof(SearchReadingPage), param);
+								result = StageFrame.Navigate(typeof(SearchReadingPage), param);
 								result = VisualStateManager.GoToState(this, "SearchReadingPrepareState", false);
 							}
 							break;
@@ -146,6 +149,7 @@ namespace CircleReading
 							break;
 						case TestingState.Finish:
 						default:
+							StageFrame.GoBack();
 							TitleTextBlock.Text = "Finish!";
 							DescriptionTextBlock.Text = "Thank you for corperating our study! You will get a choclate from us!";
 							result = VisualStateManager.GoToState(this, "FinishState", false);
@@ -163,16 +167,17 @@ namespace CircleReading
 			this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
 			this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 			StageFrame.ContentTransitions = null; //new TransitionCollection { new ContentThemeTransition() };
-			StageFrame.Navigating += StageFrame_Navigating;
+			StageFrame.Navigated += StageFrame_Navigated;
 			//StageFrame.Navigated += StageFrame_FirstNavigated;//.PageTransition = new WipeTransition();
 		}
 
-		void StageFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+		private async void StageFrame_Navigated(object sender, NavigationEventArgs e)
 		{
 			if (e.NavigationMode == NavigationMode.Back)
 			{
 				EndTime = DateTime.Now;
 				var dur = EndTime - StartTime;
+
 				switch (CurrentState)
 				{
 					case TestingState.UserInformation:
@@ -185,12 +190,15 @@ namespace CircleReading
 						break;
 					case TestingState.SearchReading1:
 						Result.SearchReadingTime1 = dur;
+						await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => { CurrentState = CurrentState + 1; });
 						break;
 					case TestingState.SearchReading2:
 						Result.SearchReadingTime2 = dur;
+						await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => { CurrentState = CurrentState + 1; });
 						break;
 					case TestingState.SearchReading3:
 						Result.SearchReadingTime3 = dur;
+						await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => { CurrentState = CurrentState + 1; });
 						break;
 					case TestingState.Rating:
 						break;
@@ -302,15 +310,15 @@ namespace CircleReading
 				case TestingState.DetailReading:
 					Result.DetailReadingTime = dur;
 					break;
-				case TestingState.SearchReading1:
-					Result.SearchReadingTime1 = TimeSpan.MaxValue;
-					break;
-				case TestingState.SearchReading2:
-					Result.SearchReadingTime2 = TimeSpan.MaxValue;
-					break;
-				case TestingState.SearchReading3:
-					Result.SearchReadingTime3 = TimeSpan.MaxValue;
-					break;
+				//case TestingState.SearchReading1:
+				//	Result.SearchReadingTime1 = TimeSpan.MaxValue;
+				//	break;
+				//case TestingState.SearchReading2:
+				//	Result.SearchReadingTime2 = TimeSpan.MaxValue;
+				//	break;
+				//case TestingState.SearchReading3:
+				//	Result.SearchReadingTime3 = TimeSpan.MaxValue;
+				//	break;
 				case TestingState.Finish:
 					{
 						App.Current.TrialRecords.Add(Result);

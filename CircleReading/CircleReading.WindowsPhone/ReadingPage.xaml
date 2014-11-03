@@ -97,11 +97,17 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FinishButton" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="QustionTextBlock" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="SearchReadingState">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FinishButton" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="QustionTextBlock" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
@@ -164,8 +170,9 @@
 
                 <TextBlock FontWeight="SemiLight" VerticalAlignment="Top" Margin="-4,-8,0,0" HorizontalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}" FontSize="35">C</TextBlock>
             </Grid>
-            <TextBlock x:Name="TitleTextBlock" Text="Detail Reading" Margin="10,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
-            <TextBlock x:Name="DescriptionTextBlock" Text="Please read the short article 'word by word'" Margin="10,-6.5,20,26.5" Style="{ThemeResource  BaseTextBlockStyle}" FontWeight="SemiLight" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock x:Name="TitleTextBlock" Text="Detail Reading" Margin="10,-6.5,0,16.5" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="45" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock x:Name="DescriptionTextBlock" Text="Please read the short article 'word by word'" Margin="10,-6.5,20,16.5" Style="{ThemeResource  BaseTextBlockStyle}" FontWeight="SemiLight" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock x:Name="QustionTextBlock" Text="What's the name of the Ukrand President?" Margin="10,-6.5,20,16.5" Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource AppAcentColorBrush}" FontWeight="SemiLight" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" Visibility="Collapsed"/>
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
@@ -175,12 +182,12 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid x:Name="ContainerGrid" Margin="0,0" Height="{Binding Path=ActualWidth,ElementName=ContainerGrid}">
-                <Frame x:Name="StageFrame" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"></Frame>
+                <Frame x:Name="StageFrame" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="1,0,-1,0"></Frame>
                 <AppBarButton Visibility="Collapsed" Name="StartButton" Icon="Play" Background="{ThemeResource AppAcentColorBrush}" BorderBrush="Transparent" Click="StartButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0" Width="220" Height="260" Label="Tap to Start" FontSize="25">
                 </AppBarButton>
                 <Path x:Name="CircularMask" Visibility="Visible" Stroke="{ThemeResource ScreenBoundryBrush}" Fill="{ThemeResource ScreenBoundryBrush}" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
             Data="M 0,0 V 0,200 H 0,200 V 200,0 H 200,100 A 100,100 180 1 1 100,200 A 100,100 180 1 1 100,0 z" />
-                <AppBarButton x:Name="FinishButton" Grid.Row="0" Icon="Next" Padding="5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Label="Finish" Click="NextButton_Click" Width="60" Height="80" Background="{ThemeResource AppAcentColorBrush}" BorderBrush="Transparent" Margin="0,0,0,-20">
+                <AppBarButton x:Name="FinishButton" Grid.Row="0" Icon="Next" Padding="5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Label="Finish" Click="NextButton_Click" Width="55" Height="75" Background="{ThemeResource AppAcentColorBrush}" BorderBrush="Transparent" Margin="0,0,0,-20">
                 </AppBarButton>
             </Grid>
             <Border x:Name="NextRowButton" Background="{ThemeResource AppAcentColorBrush}" Grid.Row="1" Height="60" Visibility="Collapsed" VerticalAlignment="Bottom" Margin="-20,0">

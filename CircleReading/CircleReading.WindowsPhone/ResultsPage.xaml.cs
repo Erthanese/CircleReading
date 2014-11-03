@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
@@ -24,12 +23,12 @@ namespace CircleReading
 	/// <summary>
 	/// An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
-	public sealed partial class MainPage : Page
+	public sealed partial class ResultsPage : Page
 	{
 		private NavigationHelper navigationHelper;
 		private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-		public MainPage()
+		public ResultsPage()
 		{
 			this.InitializeComponent();
 
@@ -66,22 +65,9 @@ namespace CircleReading
 		/// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
 		/// a dictionary of state preserved by this page during an earlier
 		/// session.  The state will be null the first time a page is visited.</param>
-		private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
+		private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
 		{
-			if (App.Current.TrialRecords == null)
-				await LoadRecords();
-		}
-
-		private async Task LoadRecords()
-		{
-			try
-			{
-				App.Current.TrialRecords = await App.GetFromLocalFolderAsAsync<List<TrailRecord>>("TrailRecords.json");
-			}
-			catch (Exception)
-			{
-				App.Current.TrialRecords = new List<TrailRecord>();
-			}
+			ResultListView.ItemsSource = App.Current.TrialRecords;
 		}
 
 		/// <summary>
@@ -92,9 +78,8 @@ namespace CircleReading
 		/// <param name="sender">The source of the event; typically <see cref="NavigationHelper"/></param>
 		/// <param name="e">Event data that provides an empty dictionary to be populated with
 		/// serializable state.</param>
-		private async void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
+		private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
 		{
-			await App.SaveToLocalFolderAsync(App.Current.TrialRecords, "TrailRecords.json");
 		}
 
 		#region NavigationHelper registration
@@ -123,20 +108,5 @@ namespace CircleReading
 		}
 
 		#endregion
-
-		private void LayoutButton_Click(object sender, RoutedEventArgs e)
-		{
-			if (sender == OverflowButton)
-				this.Frame.Navigate(typeof(ReadingPage), 1);
-			else if (sender == CropButton)
-				this.Frame.Navigate(typeof(ReadingPage), 2);
-			else if (sender == JustifiyButton)
-				this.Frame.Navigate(typeof(ReadingPage), 3);
-		}
-
-		private void ResultButton_Click(object sender, RoutedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(ResultsPage));
-		}
 	}
 }

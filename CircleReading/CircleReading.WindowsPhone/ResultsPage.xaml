@@ -1,0 +1,65 @@
+﻿<Page
+    x:Class="CircleReading.ResultsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CircleReading"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <Grid Height="35">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Ellipse StrokeThickness="5" Fill="{ThemeResource AppAcentColorBrush}"></Ellipse>
+                <Border Grid.Column="1" Margin="-20,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{ThemeResource AppAcentColorBrush}">
+                    <Grid>
+                        <Ellipse StrokeThickness="5" HorizontalAlignment="Right" Margin="0,0,-12.5,0" Fill="{ThemeResource AppAcentColorBrush}" Width="25"></Ellipse>
+                        <TextBlock FontWeight="Normal"  Text="ircular Display Study" Style="{ThemeResource TitleTextBlockStyle}" FontSize="16" Margin="10,-1,0,2"/>
+                    </Grid>
+                </Border>
+                <!--<SymbolIcon Symbol="Home" ></SymbolIcon>-->
+
+                <TextBlock FontWeight="SemiLight" VerticalAlignment="Top" Margin="-4,-8,0,0" HorizontalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}" FontSize="35">C</TextBlock>
+            </Grid>
+            <TextBlock Text="Results" Margin="10,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <ListView x:Name="ResultListView" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="10">
+                        <TextBlock Text="{Binding IsNative}"/>
+                        <TextBlock Text="{Binding IsMale}"/>
+                        <TextBlock Text="{Binding Layout}"/>
+                        <TextBlock Text="{Binding TimeStemp}"/>
+                        <TextBlock Text="{Binding BaseLineTestTime}"/>
+                        <TextBlock Text="{Binding DetailReadingTime}"/>
+                        <TextBlock Text="{Binding SearchReadingTime1}"/>
+                        <TextBlock Text="{Binding SearchReadingTime2}"/>
+                        <TextBlock Text="{Binding SearchReadingTime3}"/>
+                        <TextBlock Text="{Binding GeneralRating}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

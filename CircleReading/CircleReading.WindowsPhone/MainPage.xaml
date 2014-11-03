@@ -104,7 +104,7 @@
                 </Grid>
             </Button>
             <Line HorizontalAlignment="Stretch" Stroke="{ThemeResource AppAcentColorBrush}" StrokeThickness="5" Margin="20" X1="0" X2="400" Y1="0" Y2="0" ></Line>
-            <Button Height="80" Style="{ThemeResource PureButtonStyle}" x:Name="ResultButton">
+            <Button Height="80" Style="{ThemeResource PureButtonStyle}" x:Name="ResultButton" Click="ResultButton_Click">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80"/>

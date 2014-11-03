@@ -7,6 +7,15 @@
     >
 
     <Application.Resources>
+        <x:String x:Key="Qustion1">
+            How many CF-18 jet fighters used?
+        </x:String>
+        <x:String x:Key="Qustion2">
+            What is the Initial of the enemy?
+        </x:String>
+        <x:String x:Key="Qustion3">
+           How many monthes dose the Canada's mission get approved?
+        </x:String>
         <SolidColorBrush x:Key="AppAcentColorBrush" Color="{ThemeResource SystemColorControlAccentColor}"/>
         <SolidColorBrush x:Key="BackgroundBrush" Color="White"/>
         <SolidColorBrush x:Key="ScreenBoundryBrush" Color="Black"/>

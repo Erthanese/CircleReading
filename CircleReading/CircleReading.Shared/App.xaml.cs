@@ -132,14 +132,14 @@ namespace CircleReading
         }
 #endif
 
-		private async static Task<T> GetFromLocalFolderAsAsync<T>(string filePath) where T : class
+		public async static Task<T> GetFromLocalFolderAsAsync<T>(string filePath) where T : class
 		{
 			var file = await Windows.Storage.ApplicationData.Current.LocalFolder.GetFileAsync(filePath);
 			var content = await Windows.Storage.FileIO.ReadTextAsync(file);
 			return JsonConvert.DeserializeObject<T>(content);
 		}
 
-		private async Task SaveToLocalFolderAsync(object obj, string path)
+		public async static Task SaveToLocalFolderAsync(object obj, string path)
 		{
 			var file = await Windows.Storage.ApplicationData.Current.LocalFolder.CreateFileAsync(path, Windows.Storage.CreationCollisionOption.OpenIfExists);
 			var content = JsonConvert.SerializeObject(obj);
