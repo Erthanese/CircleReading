@@ -9,7 +9,14 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer x:Uid="ContentScrollViewer" x:Name="ContentScrollViewer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource BackgroundBrush}">
-            <RichTextBlock Margin="10,160,10,160" x:Name="CircularContentBlock" FontSize="24"  Foreground="{ThemeResource ForegroundBrush}">
+            <RichTextBlock IsTextSelectionEnabled="False" Margin="10,160,10,160" x:Name="CircularContentBlock" FontSize="24"  Foreground="{ThemeResource ForegroundBrush}">
+                <!--<RichTextBlock.Blocks>
+                    <Paragraph>
+                        <Hyperlink Foreground="{ThemeResource ForegroundBrush}">
+                            Lumia635
+                        </Hyperlink>
+                    </Paragraph>
+                </RichTextBlock.Blocks>-->
             </RichTextBlock>
         </ScrollViewer>
         <Rectangle x:Name="TopCropRect" HorizontalAlignment="Stretch" VerticalAlignment="Top" Fill="{ThemeResource BackgroundBrush}" Visibility="Collapsed"></Rectangle>

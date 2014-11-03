@@ -11,7 +11,7 @@ namespace CircleReading
 		Justify,
 	}
 
-    public struct TrailRecord
+    public class TrailRecord
     {
 		public string		UserId {get; set;}
 		public bool			IsNative {get; set;}
@@ -23,6 +23,7 @@ namespace CircleReading
 		public TimeSpan		SearchReadingTime1 {get; set;}
 		public TimeSpan		SearchReadingTime2 {get; set;}
 		public TimeSpan		SearchReadingTime3 {get; set;}
+		public double			GeneralRating { get; set; }
 	}
 
 	public class ReadingPageRequestParameter

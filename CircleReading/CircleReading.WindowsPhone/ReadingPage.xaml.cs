@@ -141,6 +141,7 @@ namespace CircleReading
 						case TestingState.Rating:
 							TitleTextBlock.Text = "Rating";
 							DescriptionTextBlock.Text = "Please Give the rate the general experience";
+							StageFrame.Navigate(typeof(RatingPage));
 							result = VisualStateManager.GoToState(this, "RatingState", false);
 							break;
 						case TestingState.Finish:
@@ -162,7 +163,44 @@ namespace CircleReading
 			this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
 			this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 			StageFrame.ContentTransitions = null; //new TransitionCollection { new ContentThemeTransition() };
+			StageFrame.Navigating += StageFrame_Navigating;
 			//StageFrame.Navigated += StageFrame_FirstNavigated;//.PageTransition = new WipeTransition();
+		}
+
+		void StageFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+		{
+			if (e.NavigationMode == NavigationMode.Back)
+			{
+				EndTime = DateTime.Now;
+				var dur = EndTime - StartTime;
+				switch (CurrentState)
+				{
+					case TestingState.UserInformation:
+						break;
+					case TestingState.BaselineReading:
+						Result.BaseLineTestTime = dur;
+						break;
+					case TestingState.DetailReading:
+						Result.DetailReadingTime = dur;
+						break;
+					case TestingState.SearchReading1:
+						Result.SearchReadingTime1 = dur;
+						break;
+					case TestingState.SearchReading2:
+						Result.SearchReadingTime2 = dur;
+						break;
+					case TestingState.SearchReading3:
+						Result.SearchReadingTime3 = dur;
+						break;
+					case TestingState.Rating:
+						break;
+					case TestingState.Finish:
+						break;
+					default:
+						break;
+				}
+			}
+			return;
 		}
 
 		/// <summary>
@@ -224,8 +262,9 @@ namespace CircleReading
 			}
 
 			CurrentState = TestingState.UserInformation;
-
-
+			Result = new TrailRecord();
+			Result.TimeStemp = DateTime.Now;
+			App.Current.CurrentTrialRecord = Result;
 		}
 
 		/// <summary>
@@ -254,14 +293,36 @@ namespace CircleReading
 		private void NextButton_Click(object sender, RoutedEventArgs e)
 		{
 			EndTime = System.DateTime.Now;
-
 			var dur = EndTime - StartTime;
+			switch (CurrentState)
+			{
+				case TestingState.BaselineReading:
+					Result.BaseLineTestTime = dur;
+					break;
+				case TestingState.DetailReading:
+					Result.DetailReadingTime = dur;
+					break;
+				case TestingState.SearchReading1:
+					Result.SearchReadingTime1 = TimeSpan.MaxValue;
+					break;
+				case TestingState.SearchReading2:
+					Result.SearchReadingTime2 = TimeSpan.MaxValue;
+					break;
+				case TestingState.SearchReading3:
+					Result.SearchReadingTime3 = TimeSpan.MaxValue;
+					break;
+				case TestingState.Finish:
+					{
+						App.Current.TrialRecords.Add(Result);
+						App.Current.CurrentTrialRecord = null;
+						if (this.Frame.CanGoBack)
+							this.Frame.GoBack();
+					}
+					break;
+				default:
+					break;
+			}
 			CurrentState = CurrentState + 1;
-
-			//ContentScrollViewer.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-			//ContentScrollViewer.Opacity = 1;
-			//FinishButton.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-			//FinishButton.Opacity = 1;
 		}
 
 		#region NavigationHelper registration

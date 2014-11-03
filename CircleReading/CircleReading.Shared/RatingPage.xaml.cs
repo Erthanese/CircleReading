@@ -12,8 +12,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using WinRTXamlToolkit.IO.Extensions;
-using WinRTXamlToolkit.Controls.Extensions;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,23 +20,16 @@ namespace CircleReading
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class UserInfoPage : Page
+    public sealed partial class RatingPage : Page
     {
-		public UserInfoPage()
+        public RatingPage()
         {
             this.InitializeComponent();
         }
-
-		protected override void OnNavigatedTo(NavigationEventArgs e)
-		{
-			base.OnNavigatedTo(e);
-		}
-
 		protected override void OnNavigatedFrom(NavigationEventArgs e)
 		{
 			base.OnNavigatedFrom(e);
-			App.Current.CurrentTrialRecord.IsNative = NativeSwitch.IsOn;
-			App.Current.CurrentTrialRecord.IsMale = GenderSwitch.IsOn;
+			App.Current.CurrentTrialRecord.GeneralRating = GeneralRatingSlider.Value;
 		}
     }
 }

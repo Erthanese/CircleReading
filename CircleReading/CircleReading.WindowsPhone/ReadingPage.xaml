@@ -120,6 +120,9 @@
                 </VisualState>
                 <VisualState x:Name="FinishState">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="StageFrame" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CircularMask" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>

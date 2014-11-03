@@ -31,6 +31,16 @@ namespace CircleReading
 #if WINDOWS_PHONE_APP
         public TransitionCollection Transitions {get; set;}
 #endif
+		public static new App Current
+		{
+			get
+			{
+				return Application.Current as App;
+			}
+		}
+
+		public TrailRecord CurrentTrialRecord { get; set; }
+		public List<TrailRecord> TrialRecords { get; set; }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
