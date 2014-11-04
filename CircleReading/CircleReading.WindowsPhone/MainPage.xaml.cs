@@ -36,6 +36,7 @@ namespace CircleReading
 			this.navigationHelper = new NavigationHelper(this);
 			this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
 			this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+			this.DataContext = DefaultViewModel;
 		}
 
 		/// <summary>
@@ -70,6 +71,11 @@ namespace CircleReading
 		{
 			if (App.Current.TrialRecords == null)
 				await LoadRecords();
+			DefaultViewModel["OverflowCount"] = App.Current.TrialRecords.Count((recod) => recod.Layout == CircleLayout.Overflow);
+			DefaultViewModel["CropCount"] = App.Current.TrialRecords.Count((recod) => recod.Layout == CircleLayout.Crop);
+			DefaultViewModel["JustifyCount"] = App.Current.TrialRecords.Count((recod) => recod.Layout == CircleLayout.Justify);
+			DefaultViewModel["TotalCount"] = App.Current.TrialRecords.Count;
+
 		}
 
 		private async Task LoadRecords()

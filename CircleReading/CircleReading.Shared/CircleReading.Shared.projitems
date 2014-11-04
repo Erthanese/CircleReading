@@ -19,14 +19,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DetailReadingPage.xaml.cs">
-      <DependentUpon>DetailReadingPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)RatingPage.xaml.cs">
       <DependentUpon>RatingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)SearchReadingPage.xaml.cs">
-      <DependentUpon>SearchReadingPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)ConventionalReadingPage.xaml.cs">
+      <DependentUpon>ConventionalReadingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)TrailRecord.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserInfoPage.xaml.cs">
@@ -47,15 +44,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)SearchReadingPage.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)ConventionalReadingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)UserInfoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)DetailReadingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

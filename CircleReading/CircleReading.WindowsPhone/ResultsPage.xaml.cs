@@ -1,9 +1,11 @@
 ﻿using CircleReading.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
@@ -27,7 +29,7 @@ namespace CircleReading
 	{
 		private NavigationHelper navigationHelper;
 		private ObservableDictionary defaultViewModel = new ObservableDictionary();
-
+		DataTransferManager dataTransferManager = null;
 		public ResultsPage()
 		{
 			this.InitializeComponent();
@@ -54,6 +56,21 @@ namespace CircleReading
 			get { return this.defaultViewModel; }
 		}
 
+		private void RegisterForShare()
+		{
+			dataTransferManager = DataTransferManager.GetForCurrentView();
+			dataTransferManager.DataRequested += new TypedEventHandler<DataTransferManager,
+				DataRequestedEventArgs>(this.ShareTextHandler);
+		}
+
+		private void ShareTextHandler(DataTransferManager sender, DataRequestedEventArgs e)
+		{
+			DataRequest request = e.Request;
+			request.Data.Properties.Title = "Result for circle reading";
+			request.Data.Properties.Description = "A json data need to analyize";
+			request.Data.SetText(JsonConvert.SerializeObject(App.Current.TrialRecords));
+		}
+
 		/// <summary>
 		/// Populates the page with content passed during navigation.  Any saved state is also
 		/// provided when recreating a page from a prior session.
@@ -68,6 +85,8 @@ namespace CircleReading
 		private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
 		{
 			ResultListView.ItemsSource = App.Current.TrialRecords;
+			RegisterForShare();
+			ResultListView.SelectionChanged += ResultListView_SelectionChanged;
 		}
 
 		/// <summary>
@@ -108,5 +127,45 @@ namespace CircleReading
 		}
 
 		#endregion
+
+		private void ShareButton_Click(object sender, RoutedEventArgs e)
+		{
+			DataTransferManager.ShowShareUI();
+		}
+
+		private void SelectButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (ResultListView.SelectionMode != ListViewSelectionMode.Multiple)
+			{
+				ResultListView.SelectionMode = ListViewSelectionMode.Multiple;
+				SelectionButton.Icon = new SymbolIcon { Symbol = Symbol.ClearSelection };
+				SelectionButton.Label = "Select";
+			}
+			else
+			{
+				ResultListView.SelectionMode = ListViewSelectionMode.None;
+				SelectionButton.Icon = new SymbolIcon { Symbol = Symbol.SelectAll };
+				SelectionButton.Label = "Cancel Select";
+			}
+		}
+
+		void ResultListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (ResultListView.SelectedItems.Count != 0)
+				DeleteButton.IsEnabled = true;
+			else
+				DeleteButton.IsEnabled = false;
+		}
+
+		private void DeleteButton_Click(object sender, RoutedEventArgs e)
+		{
+			var items = ResultListView.SelectedItems;
+			foreach (TrailRecord item in items)
+			{
+				App.Current.TrialRecords.Remove(item);
+			}
+			ResultListView.ItemsSource = null;
+			ResultListView.ItemsSource = App.Current.TrialRecords;
+		}
 	}
 }

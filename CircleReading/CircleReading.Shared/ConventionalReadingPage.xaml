@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="CircleReading.SearchReadingPage"
+    x:Class="CircleReading.ConventionalReadingPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:CircleReading"
@@ -9,7 +9,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer x:Uid="ContentScrollViewer" x:Name="ContentScrollViewer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource BackgroundBrush}">
-            <RichTextBlock IsTextSelectionEnabled="False" Margin="10,160,10,160" x:Name="CircularContentBlock" FontSize="24"  Foreground="{ThemeResource ForegroundBrush}">
+            <RichTextBlock IsTextSelectionEnabled="False" Margin="10,160,10,160" x:Name="CircularContentBlock" FontSize="{ThemeResource ReadingFontSize}" Foreground="{ThemeResource ForegroundBrush}">
                 <!--<RichTextBlock.Blocks>
                     <Paragraph>
                         <Hyperlink Foreground="{ThemeResource ForegroundBrush}">

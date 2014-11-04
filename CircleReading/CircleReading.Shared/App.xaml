@@ -14,16 +14,16 @@
             What is the Initial of the enemy?
         </x:String>
         <x:String x:Key="Qustion3">
-           How many monthes dose the Canada's mission get approved?
+           How many monthes does the Canada's mission get approved?
         </x:String>
+        <x:Double x:Key="ReadingFontSize">28</x:Double>
+        
         <SolidColorBrush x:Key="AppAcentColorBrush" Color="{ThemeResource SystemColorControlAccentColor}"/>
         <SolidColorBrush x:Key="BackgroundBrush" Color="White"/>
         <SolidColorBrush x:Key="ScreenBoundryBrush" Color="Black"/>
         <SolidColorBrush x:Key="ForegroundBrush" Color="Black"/>
         <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <x:String x:Key="htmlString" >
-            ms-appx-web:///Articles/Article1.html
-        </x:String>
+
         <Style x:Key="PureButtonStyle" TargetType="Button">
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="0"/>

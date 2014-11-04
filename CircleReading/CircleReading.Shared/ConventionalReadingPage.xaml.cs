@@ -24,9 +24,9 @@ namespace CircleReading
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SearchReadingPage : Page
+    public sealed partial class ConventionalReadingPage : Page
     {
-        public SearchReadingPage()
+        public ConventionalReadingPage()
         {
             this.InitializeComponent();
         }
@@ -72,7 +72,7 @@ namespace CircleReading
 				container.Child = textBlock;
 				textBlock.Text = node.InnerText;
 				textBlock.Tapped += textBlock_Tapped;
-				textBlock.FontSize = 24;
+				textBlock.FontSize = (double)App.Current.Resources["ReadingFontSize"];
 				return container;
 
 				//var link = new Hyperlink();

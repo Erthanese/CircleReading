@@ -93,7 +93,7 @@ namespace CircleReading
 									ArticleName = "Article0.html"
 								};
 								var param = JsonConvert.SerializeObject(request);
-								StageFrame.Navigate(typeof(DetailReadingPage),param);
+								StageFrame.Navigate(typeof(ConventionalReadingPage), param);
 								result = VisualStateManager.GoToState(this, "BaselineReadingPrepareState", false);
 							}
 							break;
@@ -111,7 +111,7 @@ namespace CircleReading
 									ArticleName = "Article1.html"
 								};
 								var param = JsonConvert.SerializeObject(request);
-								StageFrame.Navigate(typeof(DetailReadingPage), param);
+								StageFrame.Navigate(typeof(ConventionalReadingPage), param);
 								result = VisualStateManager.GoToState(this, "DetailReadingPrepareState", false);
 							}
 							break;
@@ -132,7 +132,7 @@ namespace CircleReading
 									ArticleName = String.Format("Article1_S{0}.html", No)
 								};
 								var param = JsonConvert.SerializeObject(request);
-								result = StageFrame.Navigate(typeof(SearchReadingPage), param);
+								result = StageFrame.Navigate(typeof(ConventionalReadingPage), param);
 								result = VisualStateManager.GoToState(this, "SearchReadingPrepareState", false);
 							}
 							break;
@@ -272,6 +272,7 @@ namespace CircleReading
 			CurrentState = TestingState.UserInformation;
 			Result = new TrailRecord();
 			Result.TimeStemp = DateTime.Now;
+			Result.Layout = RequestLayout;
 			App.Current.CurrentTrialRecord = Result;
 		}
 

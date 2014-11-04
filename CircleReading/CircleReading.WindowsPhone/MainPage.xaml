@@ -72,6 +72,7 @@
                         </SymbolIcon>
                     </Viewbox>
                     <TextBlock Grid.Column="1" Margin="10" Style="{ThemeResource SubheaderTextBlockStyle}" VerticalAlignment="Center"> Overflow</TextBlock>
+                    <TextBlock Text="{Binding OverflowCount}"  Grid.Column="2" Style="{ThemeResource SubheaderTextBlockStyle}" VerticalAlignment="Center" Margin="10" Foreground="{ThemeResource AppAcentColorBrush}" HorizontalAlignment="Center"></TextBlock>
                 </Grid>
             </Button>
             <Button Height="80" Style="{ThemeResource PureButtonStyle}" x:Name="CropButton" Click="LayoutButton_Click">
@@ -79,6 +80,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80"/>
                     </Grid.ColumnDefinitions>
                     <Ellipse Margin="16" StrokeThickness="5" Fill="{ThemeResource AppAcentColorBrush}"></Ellipse>
                     <Viewbox Margin="18">
@@ -86,6 +88,7 @@
                         </SymbolIcon>
                     </Viewbox>
                     <TextBlock Grid.Column="1" Margin="10" Style="{ThemeResource SubheaderTextBlockStyle}" VerticalAlignment="Center"> Crop</TextBlock>
+                    <TextBlock Text="{Binding CropCount}"  Grid.Column="2" Style="{ThemeResource SubheaderTextBlockStyle}" VerticalAlignment="Center" Margin="10" Foreground="{ThemeResource AppAcentColorBrush}" HorizontalAlignment="Center"></TextBlock>
                 </Grid>
             </Button>
             <Button Height="80" Style="{ThemeResource PureButtonStyle}" x:Name="JustifiyButton" Click="LayoutButton_Click">
@@ -93,6 +96,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80"/>
                     </Grid.ColumnDefinitions>
                     <Ellipse Margin="16" StrokeThickness="5" Fill="{ThemeResource AppAcentColorBrush}"></Ellipse>
                     <Viewbox Margin="18,18">
@@ -101,6 +105,7 @@
                         </PathIcon>
                     </Viewbox>
                     <TextBlock Grid.Column="1" Margin="10" Style="{ThemeResource SubheaderTextBlockStyle}" VerticalAlignment="Center"> Justify</TextBlock>
+                    <TextBlock Text="{Binding JustifyCount}" Grid.Column="2" Style="{ThemeResource SubheaderTextBlockStyle}" VerticalAlignment="Center" Margin="10" Foreground="{ThemeResource AppAcentColorBrush}" HorizontalAlignment="Center"></TextBlock>
                 </Grid>
             </Button>
             <Line HorizontalAlignment="Stretch" Stroke="{ThemeResource AppAcentColorBrush}" StrokeThickness="5" Margin="20" X1="0" X2="400" Y1="0" Y2="0" ></Line>
@@ -109,12 +114,14 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80"/>
                     </Grid.ColumnDefinitions>
                     <Rectangle Margin="16" StrokeThickness="5" Fill="{ThemeResource AppAcentColorBrush}"></Rectangle>
                     <Viewbox Margin="20">
                         <SymbolIcon Foreground="{ThemeResource ForegroundBrush}" VerticalAlignment="Center" HorizontalAlignment="Center"  Symbol="Clock">                        </SymbolIcon>
                     </Viewbox>
                     <TextBlock Grid.Column="1" Margin="10" Style="{ThemeResource SubheaderTextBlockStyle}" VerticalAlignment="Center"> Results </TextBlock>
+                    <TextBlock Text="{Binding TotalCount}" Grid.Column="2" Style="{ThemeResource SubheaderTextBlockStyle}" VerticalAlignment="Center" Margin="10" Foreground="{ThemeResource AppAcentColorBrush}" HorizontalAlignment="Center"></TextBlock>
                 </Grid>
             </Button>        
         </StackPanel>
