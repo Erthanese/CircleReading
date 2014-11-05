@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="CircleReading.JustifyPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CircleReading"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <ScrollViewer x:Uid="ContentScrollViewer" x:Name="ContentScrollViewer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource VerticalScrollViewerStyle}" Background="{ThemeResource BackgroundBrush}" VerticalSnapPointsType="Mandatory" >
+            <local:RichTextColumns x:Name="ContentColumns" HorizontalAlignment="Center" Margin="0,160"  Orientation="Vertical" ColumnWidth="{Binding LineWidth}" ColumnHeight="{Binding LineHeight}" ColumnsPerPage="{ThemeResource LinesPerPage}">
+                <RichTextBlock IsTextSelectionEnabled="False" x:Name="CircularContentBlock" FontSize="{ThemeResource ReadingFontSize}" Foreground="{ThemeResource ForegroundBrush}" RenderTransformOrigin=".5,.5">
+                    <RichTextBlock.RenderTransform>
+                        <CompositeTransform ScaleX="1" ScaleY="1"/>
+                    </RichTextBlock.RenderTransform>
+                </RichTextBlock>
+                <local:RichTextColumns.ColumnTemplate>
+                    <DataTemplate>
+                        <RichTextBlockOverflow RenderTransformOrigin=".5,.5">
+                            <RichTextBlockOverflow.RenderTransform>
+                                <CompositeTransform ScaleX="1" ScaleY="1"/>
+                            </RichTextBlockOverflow.RenderTransform>
+                        </RichTextBlockOverflow>
+                    </DataTemplate>
+                </local:RichTextColumns.ColumnTemplate>
+            </local:RichTextColumns>
+        </ScrollViewer>
+    </Grid>
+</Page>

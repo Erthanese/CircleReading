@@ -16,8 +16,13 @@
         <x:String x:Key="Qustion3">
            How many monthes does the Canada's mission get approved?
         </x:String>
-        <x:Double x:Key="ReadingFontSize">28</x:Double>
-        
+        <x:Double x:Key="ReadingFontSize">24</x:Double>
+        <x:Double x:Key="ReadingLineHeight">28.284</x:Double>
+        <x:Double x:Key="ScreenDiameter">282.84</x:Double>
+        <x:Double x:Key="FocusLineWidthFactor">0.8</x:Double>
+        <x:Int32  x:Key="LinesPerPage">6</x:Int32>
+
+
         <SolidColorBrush x:Key="AppAcentColorBrush" Color="{ThemeResource SystemColorControlAccentColor}"/>
         <SolidColorBrush x:Key="BackgroundBrush" Color="White"/>
         <SolidColorBrush x:Key="ScreenBoundryBrush" Color="Black"/>
@@ -188,6 +193,25 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- ScrollViewer styles -->
+
+        <Style x:Key="HorizontalScrollViewerStyle" TargetType="ScrollViewer">
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Enabled" />
+            <Setter Property="ScrollViewer.VerticalScrollMode" Value="Disabled" />
+            <Setter Property="ScrollViewer.ZoomMode" Value="Disabled" />
+        </Style>
+
+        <Style x:Key="VerticalScrollViewerStyle" TargetType="ScrollViewer">
+            <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled" />
+            <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled" />
+            <Setter Property="ScrollViewer.ZoomMode" Value="Disabled" />
+        </Style>
+
 
     </Application.Resources>
 </Application>

@@ -35,6 +35,13 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextRowButton" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContainerGrid" Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <x:Double>NaN</x:Double>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="BaselineReadingPrepareState">
@@ -123,15 +130,14 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextRowButton" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContainerGrid" Storyboard.TargetProperty="Margin">
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContainerGrid" Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0">
                                 <DiscreteObjectKeyFrame.Value>
-                                    <Thickness>
-                                        20,10
-                                    </Thickness>
+                                    <x:Double>NaN</x:Double>
                                 </DiscreteObjectKeyFrame.Value>
                             </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
+
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="FinishState">
@@ -191,17 +197,17 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="80"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid x:Name="ContainerGrid" Margin="40,10,40,0" Height="{Binding Path=ActualWidth,ElementName=ContainerGrid}">
+            <Grid x:Name="ContainerGrid" VerticalAlignment="Center" HorizontalAlignment="Center" Height="{ThemeResource ScreenDiameter}" Width="{ThemeResource ScreenDiameter}">
                 <Frame x:Name="StageFrame" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"></Frame>
-                <AppBarButton Visibility="Collapsed" Name="StartButton" Icon="Play" Background="{ThemeResource AppAcentColorBrush}" BorderBrush="Transparent" Click="StartButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0" Width="220" Height="260" Label="Tap to Start" FontSize="25">
+                <AppBarButton Visibility="Collapsed" Name="StartButton" Icon="Play" Background="{ThemeResource AppAcentColorBrush}" BorderBrush="Transparent" Click="StartButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,40,0,0" Width="180" Height="220" Label="Tap to Start" FontSize="25">
                 </AppBarButton>
                 <Path x:Name="CircularMask" Visibility="Visible" Stroke="{ThemeResource ScreenBoundryBrush}" Fill="{ThemeResource ScreenBoundryBrush}" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
             Data="M 0,0 V 0,200 H 0,200 V 200,0 H 200,100 A 100,100 180 1 1 100,200 A 100,100 180 1 1 100,0 z" />
                 <AppBarButton x:Name="FinishButton" Grid.Row="0" Icon="Next" Padding="5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Label="Finish" Click="NextButton_Click" Width="45" Height="65" Background="{ThemeResource AppAcentColorBrush}" BorderBrush="Transparent" Margin="0,0,0,-20">
                 </AppBarButton>
             </Grid>
-            <Border x:Name="NextRowButton" Background="{ThemeResource AppAcentColorBrush}" Grid.Row="1" Height="50" Visibility="Collapsed" VerticalAlignment="Bottom" Margin="-20,0">
-                <AppBarButton VerticalAlignment="Center" Grid.Row="0" Icon="Next" HorizontalAlignment="Center" Height="40" Label="Finish" Click="NextButton_Click" IsCompact="True" Background="{ThemeResource BackgroundBrush}" BorderBrush="Transparent" Foreground="{ThemeResource AppAcentColorBrush}">
+            <Border x:Name="NextRowButton" Background="{ThemeResource AppAcentColorBrush}" Grid.Row="1" Height="60" Visibility="Collapsed" VerticalAlignment="Bottom" Margin="-20,0">
+                <AppBarButton VerticalAlignment="Center" Grid.Row="0" Icon="Next" HorizontalAlignment="Center" Width="45" Height="45" Label="Finish" Click="NextButton_Click" IsCompact="True" Background="{ThemeResource BackgroundBrush}" BorderBrush="Transparent" Foreground="{ThemeResource AppAcentColorBrush}">
                 </AppBarButton>
             </Border>
         </Grid>

@@ -9,7 +9,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer x:Uid="ContentScrollViewer" x:Name="ContentScrollViewer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{ThemeResource BackgroundBrush}">
-            <RichTextBlock IsTextSelectionEnabled="False" Margin="10,160,10,160" x:Name="CircularContentBlock" FontSize="{ThemeResource ReadingFontSize}" Foreground="{ThemeResource ForegroundBrush}">
+            <RichTextBlock IsTextSelectionEnabled="False" LineHeight="{ThemeResource ReadingLineHeight}" Margin="0,160,0,160" x:Name="CircularContentBlock" FontSize="{ThemeResource ReadingFontSize}" Foreground="{ThemeResource ForegroundBrush}" Padding="10,0">
                 <!--<RichTextBlock.Blocks>
                     <Paragraph>
                         <Hyperlink Foreground="{ThemeResource ForegroundBrush}">
@@ -19,7 +19,7 @@
                 </RichTextBlock.Blocks>-->
             </RichTextBlock>
         </ScrollViewer>
-        <Rectangle x:Name="TopCropRect" HorizontalAlignment="Stretch" VerticalAlignment="Top" Fill="{ThemeResource BackgroundBrush}" Visibility="Collapsed"></Rectangle>
-        <Rectangle x:Name="BottomCropRect" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Fill="{ThemeResource BackgroundBrush}" Visibility="Collapsed"></Rectangle>
+        <Rectangle Opacity="0" x:Name="TopCropRect" HorizontalAlignment="Stretch" VerticalAlignment="Top" Fill="{ThemeResource BackgroundBrush}" Visibility="Collapsed"></Rectangle>
+        <Rectangle Opacity="0" x:Name="BottomCropRect" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Fill="{ThemeResource BackgroundBrush}" Visibility="Collapsed"></Rectangle>
     </Grid>
 </Page>

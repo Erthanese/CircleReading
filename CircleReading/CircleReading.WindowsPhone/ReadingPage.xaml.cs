@@ -111,7 +111,10 @@ namespace CircleReading
 									ArticleName = "Article1.html"
 								};
 								var param = JsonConvert.SerializeObject(request);
-								StageFrame.Navigate(typeof(ConventionalReadingPage), param);
+								if (RequestLayout != CircleLayout.Justify)
+									StageFrame.Navigate(typeof(ConventionalReadingPage), param);
+								else
+									StageFrame.Navigate(typeof(JustifyPage), param);
 								result = VisualStateManager.GoToState(this, "DetailReadingPrepareState", false);
 							}
 							break;
@@ -132,7 +135,10 @@ namespace CircleReading
 									ArticleName = String.Format("Article1_S{0}.html", No)
 								};
 								var param = JsonConvert.SerializeObject(request);
-								result = StageFrame.Navigate(typeof(ConventionalReadingPage), param);
+								if (RequestLayout != CircleLayout.Justify)
+									StageFrame.Navigate(typeof(ConventionalReadingPage), param);
+								else
+									StageFrame.Navigate(typeof(JustifyPage), param);
 								result = VisualStateManager.GoToState(this, "SearchReadingPrepareState", false);
 							}
 							break;
@@ -265,7 +271,7 @@ namespace CircleReading
 					break;
 				case 3:
 					RequestLayout = CircleLayout.Justify;
-					await MessageDialogExtensions.ShowTwoOptionsDialog("Justify Layout is not supported yet.", "Ingnore", "Back", null, new Action(this.Frame.GoBack));
+					//await MessageDialogExtensions.ShowTwoOptionsDialog("Justify Layout is not supported yet.", "Ingnore", "Back", null, new Action(this.Frame.GoBack));
 					break;
 			}
 
