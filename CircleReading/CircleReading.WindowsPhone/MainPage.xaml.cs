@@ -74,6 +74,8 @@ namespace CircleReading
 			DefaultViewModel["OverflowCount"] = App.Current.TrialRecords.Count((recod) => recod.Layout == CircleLayout.Overflow);
 			DefaultViewModel["CropCount"] = App.Current.TrialRecords.Count((recod) => recod.Layout == CircleLayout.Crop);
 			DefaultViewModel["JustifyCount"] = App.Current.TrialRecords.Count((recod) => recod.Layout == CircleLayout.Justify);
+			DefaultViewModel["PagedAdaptiveCount"] = App.Current.TrialRecords.Count((recod) => recod.Layout == CircleLayout.PagedAdaptive);
+
 			DefaultViewModel["TotalCount"] = App.Current.TrialRecords.Count;
 
 		}
@@ -133,11 +135,13 @@ namespace CircleReading
 		private void LayoutButton_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender == OverflowButton)
-				this.Frame.Navigate(typeof(ReadingPage), 1);
+				this.Frame.Navigate(typeof(ReadingPage), CircleLayout.Overflow);
 			else if (sender == CropButton)
-				this.Frame.Navigate(typeof(ReadingPage), 2);
+				this.Frame.Navigate(typeof(ReadingPage), CircleLayout.Crop);
 			else if (sender == JustifiyButton)
-				this.Frame.Navigate(typeof(ReadingPage), 3);
+				this.Frame.Navigate(typeof(ReadingPage), CircleLayout.Justify);
+			else if (sender == PagedJustifiyButton)
+				this.Frame.Navigate(typeof(ReadingPage), CircleLayout.PagedAdaptive);
 		}
 
 		private void ResultButton_Click(object sender, RoutedEventArgs e)

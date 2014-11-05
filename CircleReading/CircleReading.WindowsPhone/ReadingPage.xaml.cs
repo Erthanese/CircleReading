@@ -111,7 +111,7 @@ namespace CircleReading
 									ArticleName = "Article1.html"
 								};
 								var param = JsonConvert.SerializeObject(request);
-								if (RequestLayout != CircleLayout.Justify)
+								if (RequestLayout < CircleLayout.Justify)
 									StageFrame.Navigate(typeof(ConventionalReadingPage), param);
 								else
 									StageFrame.Navigate(typeof(JustifyPage), param);
@@ -135,7 +135,7 @@ namespace CircleReading
 									ArticleName = String.Format("Article1_S{0}.html", No)
 								};
 								var param = JsonConvert.SerializeObject(request);
-								if (RequestLayout != CircleLayout.Justify)
+								if (RequestLayout < CircleLayout.Justify)
 									StageFrame.Navigate(typeof(ConventionalReadingPage), param);
 								else
 									StageFrame.Navigate(typeof(JustifyPage), param);
@@ -260,20 +260,20 @@ namespace CircleReading
 		private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
 		{
 			var folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync("Articles");
-			int layoutNo = (int)e.NavigationParameter;
-			switch (layoutNo)
-			{
-				case 1:
-					RequestLayout = CircleLayout.Overflow;
-					break;
-				case 2:
-					RequestLayout = CircleLayout.Crop;
-					break;
-				case 3:
-					RequestLayout = CircleLayout.Justify;
-					//await MessageDialogExtensions.ShowTwoOptionsDialog("Justify Layout is not supported yet.", "Ingnore", "Back", null, new Action(this.Frame.GoBack));
-					break;
-			}
+			RequestLayout = (CircleLayout)e.NavigationParameter;
+			//switch (layoutNo)
+			//{
+			//	case 1:
+			//		RequestLayout = CircleLayout.Overflow;
+			//		break;
+			//	case 2:
+			//		RequestLayout = CircleLayout.Crop;
+			//		break;
+			//	case 3:
+			//		RequestLayout = CircleLayout.Justify;
+			//		//await MessageDialogExtensions.ShowTwoOptionsDialog("Justify Layout is not supported yet.", "Ingnore", "Back", null, new Action(this.Frame.GoBack));
+			//		break;
+			//}
 
 			CurrentState = TestingState.UserInformation;
 			Result = new TrailRecord();

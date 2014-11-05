@@ -9,6 +9,7 @@ namespace CircleReading
 		Overflow,
 		Crop,
 		Justify,
+		PagedAdaptive,
 	}
 
     public class TrailRecord

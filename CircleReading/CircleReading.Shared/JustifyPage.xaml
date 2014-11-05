@@ -8,7 +8,11 @@
     mc:Ignorable="d">
 
     <Grid>
-        <ScrollViewer x:Uid="ContentScrollViewer" x:Name="ContentScrollViewer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource VerticalScrollViewerStyle}" Background="{ThemeResource BackgroundBrush}" VerticalSnapPointsType="Mandatory" >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.RowSpan="2" x:Uid="ContentScrollViewer" x:Name="ContentScrollViewer" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource VerticalScrollViewerStyle}" Background="{ThemeResource BackgroundBrush}" VerticalSnapPointsType="MandatorySingle">
             <local:RichTextColumns x:Name="ContentColumns" HorizontalAlignment="Center" Margin="0,160"  Orientation="Vertical" ColumnWidth="{Binding LineWidth}" ColumnHeight="{Binding LineHeight}" ColumnsPerPage="{ThemeResource LinesPerPage}">
                 <RichTextBlock IsTextSelectionEnabled="False" x:Name="CircularContentBlock" FontSize="{ThemeResource ReadingFontSize}" Foreground="{ThemeResource ForegroundBrush}" RenderTransformOrigin=".5,.5">
                     <RichTextBlock.RenderTransform>
@@ -26,5 +30,11 @@
                 </local:RichTextColumns.ColumnTemplate>
             </local:RichTextColumns>
         </ScrollViewer>
+        <Button x:Name="TopCropButton" Grid.Row="0" Style="{ThemeResource PureButtonStyle}" VerticalAlignment="Top" Click="UpButton_Click" Visibility="Collapsed">
+            <Rectangle Fill="Transparent" Stroke="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Rectangle>
+        </Button>
+        <Button x:Name="BottomCropButton" Grid.Row="1" Style="{ThemeResource PureButtonStyle}" VerticalAlignment="Bottom" Click="DownButton_Click" Visibility="Collapsed">
+            <Rectangle Fill="Transparent" Stroke="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Rectangle>
+        </Button>
     </Grid>
 </Page>

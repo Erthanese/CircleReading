@@ -112,6 +112,19 @@ namespace CircleReading
 			ViewModel["LineWidth"] = (double)App.Current.Resources["ScreenDiameter"] * FocusFactor;
 			ViewModel["LineHeight"] = (double)App.Current.Resources["ReadingLineHeight"];
 
+			if (Requst.Layout == CircleLayout.PagedAdaptive)
+			{
+				ContentScrollViewer.IsVerticalScrollChainingEnabled = true;
+
+				var R = (double)App.Current.Resources["ScreenDiameter"] * 0.5;
+				var margin = (1-Math.Sqrt(1 - FocusFactor * FocusFactor)) * R;
+				TopCropButton.Height = margin;
+				BottomCropButton.Height = margin;
+				TopCropButton.Visibility = Visibility.Visible;
+				BottomCropButton.Visibility = Visibility.Visible;
+			}
+
+
 			var doc = new HtmlDocument();
 			doc.LoadHtml(html);
 			var nodes = doc.DocumentNode;
@@ -121,6 +134,11 @@ namespace CircleReading
 				if (para != null)
 					CircularContentBlock.Blocks.Add(para);
 			}
+		}
+
+		void ContentScrollViewer_ManipulationStarting(object sender, ManipulationStartingRoutedEventArgs e)
+		{
+			e.Handled = true;
 		}
 
 		void ContentScrollViewer_LayoutUpdated(object sender, object e)
@@ -168,6 +186,16 @@ namespace CircleReading
 				}
 				return new Tuple<double, double>(scale, (noffset - offset)); // 
 			}
+		}
+
+		private void DownButton_Click(object sender, RoutedEventArgs e)
+		{
+			ContentScrollViewer.ChangeView(null, ContentScrollViewer.VerticalOffset + ContentColumns.ColumnHeight * ContentColumns.ColumnsPerPage,null,true);
+		}
+
+		private void UpButton_Click(object sender, RoutedEventArgs e)
+		{
+			ContentScrollViewer.ChangeView(null, ContentScrollViewer.VerticalOffset - ContentColumns.ColumnHeight * ContentColumns.ColumnsPerPage, null, true);
 		}
 
 		//void ContentScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
