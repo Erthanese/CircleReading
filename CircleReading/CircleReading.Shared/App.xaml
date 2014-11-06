@@ -8,13 +8,13 @@
 
     <Application.Resources>
         <x:String x:Key="Qustion1">
-            How many CF-18 jet fighters used?
+            What is the name of Alan's Father?
         </x:String>
         <x:String x:Key="Qustion2">
-            What is the Initial of the enemy?
+            When is Alan's birthday date?
         </x:String>
         <x:String x:Key="Qustion3">
-           How many monthes does the Canada's mission get approved?
+            Where did Alan stay at Hastings in his childhood years?
         </x:String>
         <x:Double x:Key="ReadingFontSize">24</x:Double>
         <x:Double x:Key="ReadingLineHeight">28.284</x:Double>
@@ -24,9 +24,9 @@
 
 
         <SolidColorBrush x:Key="AppAcentColorBrush" Color="{ThemeResource SystemColorControlAccentColor}"/>
-        <SolidColorBrush x:Key="BackgroundBrush" Color="White"/>
-        <SolidColorBrush x:Key="ScreenBoundryBrush" Color="Black"/>
-        <SolidColorBrush x:Key="ForegroundBrush" Color="Black"/>
+        <SolidColorBrush x:Key="BackgroundBrush" Color="{ThemeResource PhoneForegroundColor}"/>
+        <SolidColorBrush x:Key="ScreenBoundryBrush" Color="{ThemeResource PhoneBackgroundColor}"/>
+        <SolidColorBrush x:Key="ForegroundBrush" Color="{ThemeResource PhoneBackgroundColor}"/>
         <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <Style x:Key="PureButtonStyle" TargetType="Button">

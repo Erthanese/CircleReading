@@ -160,6 +160,12 @@ namespace CircleReading
 							DescriptionTextBlock.Text = "Thank you for corperating our study! You will get a choclate from us!";
 							result = VisualStateManager.GoToState(this, "FinishState", false);
 							break;
+						case TestingState.AfterFinish:
+							App.Current.TrialRecords.Add(Result);
+							App.Current.CurrentTrialRecord = null;
+							if (this.Frame.CanGoBack)
+								this.Frame.GoBack();
+							break;
 					}
 				}
 			}
@@ -296,8 +302,8 @@ namespace CircleReading
 
 		private void StartButton_Click(object sender, RoutedEventArgs e)
 		{
-			StartButton.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-			StageFrame.Visibility = Visibility.Visible;
+			//StartButton.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+			//StageFrame.Visibility = Visibility.Visible;
 
 			CurrentState = CurrentState + 1; 
 			StartTime = System.DateTime.Now;
@@ -328,10 +334,7 @@ namespace CircleReading
 				//	break;
 				case TestingState.Finish:
 					{
-						App.Current.TrialRecords.Add(Result);
-						App.Current.CurrentTrialRecord = null;
-						if (this.Frame.CanGoBack)
-							this.Frame.GoBack();
+
 					}
 					break;
 				default:

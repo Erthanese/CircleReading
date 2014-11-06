@@ -76,7 +76,7 @@ namespace CircleReading
 		{
 			if (node.NodeType == HtmlNodeType.Text)
 			{
-				if (!String.IsNullOrWhiteSpace(node.InnerText))
+				if (!String.IsNullOrEmpty(node.InnerText))
 					return new Run { Text = node.InnerText };
 			}
 			else if (node.Name == "a")

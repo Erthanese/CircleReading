@@ -49,5 +49,6 @@ namespace CircleReading
 		SearchReading3,
 		Rating,
 		Finish,
+		AfterFinish,
 	}
 }

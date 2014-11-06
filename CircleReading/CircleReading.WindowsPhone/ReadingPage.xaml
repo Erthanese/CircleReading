@@ -151,9 +151,22 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FinishButton" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextRowButton" Storyboard.TargetProperty="Visibility">
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="StartButton" Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="StartButton" Storyboard.TargetProperty="Label">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Tap to Submit"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="StartButton" Storyboard.TargetProperty="Icon">
+                            <DiscreteObjectKeyFrame KeyTime="0" >
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SymbolIcon Symbol="Accept"></SymbolIcon>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextRowButton" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>-->
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
